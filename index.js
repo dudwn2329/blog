@@ -7,4 +7,8 @@ import App from './jsmodule/app';
 
 $(function(){
     let app = new App();
+
+    if(typeof msg != "undefined"){
+        app.makeToast(msg);
+    }
 });
