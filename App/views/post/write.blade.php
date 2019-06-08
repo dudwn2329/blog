@@ -1,5 +1,9 @@
 @extends('layout/master')
 
+@section('scriptsection')
+<script src="/js/editor.js"></script>
+@endsection
+
 @section('maincontent')
 <div class="container">
     <div class="row d-flex justify-content-center mt-5">
@@ -12,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <label>글 내용</label>
-                    <textarea class="form-control" name="content"></textarea>
+                    <textarea id="editor" class="form-control" name="content"></textarea>
                 </div>
 
                 <div class="row">

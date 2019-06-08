@@ -13,7 +13,7 @@
         @endphp
     @endif
     <script src="/js/app.js"></script>
-    
+    @yield('scriptsection')
     <title>My Blog</title>
 </head>
 

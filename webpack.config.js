@@ -2,9 +2,11 @@ const path = require('path');
 
 module.exports = {
     mode:"development",
-    entry:"./index.js",
+    entry:{
+        app:"./index.js",
+        editor: "./editor.js"
+    },
     output:{
-        "filename" : "app.js",
         "path":path.join(__dirname, "public/js")
     },
     module:{

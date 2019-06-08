@@ -112,8 +112,9 @@ header > .icon-bar > span {
     padding: 8px 12px;
     width: 100%;
     flex: 1;
-    background-color: #333;
+    
 }
+
 .img-box>img{
     width: 100%;
     height: 100%;
@@ -147,9 +148,10 @@ footer .copyright{
     right:-200px;
     top:0;
     height:100%;
-    background-color: #777;
+    background-color: #fff;
     z-index: 30;
     transition: all 0.5s;
+    border-left: 1px solid rgba(0,0,0,0.3);
 }
 
 #submenu.active {
@@ -180,4 +182,8 @@ footer .copyright{
     min-height: 60px;
     display: flex !important;
     align-items: center;
+}
+
+.ck-editor__editable{
+    min-height: 450px;
 }
