@@ -9,17 +9,32 @@ class PostController extends MasterController {
     public function writePage() {
 
         $this->render("post/write");
-
+        
     }
 
     public function writeProcess() {
         $title = $_POST['title'];
         $content = $_POST['content'];
         $writer = $_SESSION['user']->id;
+        $imgPattern = '/<img src=".+">/';
+        $contentPattern = '/<figcaption.+figcaption>/';
+        $strip_tags = ["figcaption"];
+        
+        
+        $match = preg_match($imgPattern, $content, $matches);
+        $image = "";
+        
+        if($match>0){
+            $image = $matches[0];
+            $match = preg_match($contentPattern, $content, $matches);
+            if($match>0){
+                $content = $matches[0];
+            }
+        }
+        $content = $this->strip_tag_arrays($content, $strip_tags);
+        $sql = "INSERT INTO boards(`title`, `image`, `content`, `writer`, `wdate`) VALUES (?, ?, ?, ?, NOW())";
 
-        $sql = "INSERT INTO boards(`title`, `content`, `writer`, `wdate`) VALUES (?, ?, ?, NOW())";
-
-        $cnt = DB::query($sql, [$title, $content, $writer]);
+        $cnt = DB::query($sql, [$title, $image, $content, $writer]);
 
         if($cnt != 1) {
             $_SESSION['flash_msg'] = ['msg' => '글 작성중 오류 발생'];
@@ -35,6 +50,7 @@ class PostController extends MasterController {
             $this->json(['error'=>['msg'=>'이미지가 없습니다']], 400);
             exit;
         }
+        
         //여기까지 코드가 왔다면 업로드 파일은 존재하는 거다.
         $file = $_FILES['upload'];
 

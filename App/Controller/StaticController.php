@@ -11,15 +11,15 @@ class StaticController extends MasterController {
         if(!is_numeric($page)){
             $page = 1;
         }
-        $sql = "SELECT * FROM boards LIMIT y" . ($page-1) * 3 . ", 3";
+        $sql = "SELECT * FROM boards LIMIT " . ($page-1) * 3 . ", 3";
         $list = DB::fetchAll($sql);
         $imgPattern = '/<img src=".+">/';
         foreach( $list as $item){
-            $match = preg_match($imgPattern, $item->content, $matches);
+            $match = preg_match($imgPattern, $item->image, $matches);
             if($match>0){
                 $item->thumbnail = $matches[0];
             }else{
-                $item->thumbnail = "<img src='/images/noimage.jpg'>";
+                $item->thumbnail = "<img src='/images/noimage.png'>";
             }
         }
         $pager = new Pager();

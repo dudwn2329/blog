@@ -30,11 +30,12 @@
     <div id="toastList">
         
     </div>
+    <section id="bgimg">
     <section id="main">
         <div class="container">
             <header class="d-flex">
                 <div class="logo">
-                    <h1>my blog</h1>
+                    <h1><a href="/">my blog</a></h1>
                 </div>
                 <div class="icon-bar">
                     <span><i class="fas fa-search"></i></span>
@@ -43,20 +44,23 @@
             </header>
         </div>
     </section>
+    
+        <div class="wrapper">
+        @yield('maincontent')
 
-    @yield('maincontent')
-
-    <footer>
-        <div class="container">
-            <div class="logo">
-                <img src="/images/logo.png" alt="logo" width="300" height="100">
-            </div>
-            <div class="copyright">
-                <p>Copyright dudwn. 2019 Allright reserved. Y-Y Digital hightschool</p>
-            </div>
+        
         </div>
-    </footer>
-
+        <footer>
+            <div class="container">
+                <div class="logo">
+                    <img src="/images/logo.png" alt="logo" width="360" height="70">
+                </div>
+                <div class="copyright">
+                    <p>Copyright dudwn. 2019 Allright reserved. Y-Y Digital hightschool</p>
+                </div>
+            </div>
+        </footer>
+    </section>
 </body>
 
 </html>

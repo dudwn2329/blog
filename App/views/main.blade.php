@@ -1,7 +1,7 @@
 @extends('layout/master')
 
 @section('maincontent')
-<section id="slider" class="mt-4">
+<section id="slider">
     <!-- 슬라이더 섹션 -->
     <div class="container">
         <div class="slider" >
@@ -69,13 +69,13 @@
         <li class="page-item">
         @endif
         <li class="page-item">
-            <a href="#" class="page-link">{{ $i }}</a>
+            <a href="/?p={{$i}}" class="page-link">{{ $i }}</a>
         </li>
         @endfor
         
         @if($p->next)
         <li class="page-item">
-            <a href="#" class="page-link">다음</a>
+            <a href="/?p={{$p->start + 1 }}" class="page-link">다음</a>
         </li>
         @endif
     </ul>
