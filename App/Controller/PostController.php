@@ -12,6 +12,18 @@ class PostController extends MasterController {
         
     }
 
+    public function editPage(){
+        if(!isset($_GET['id'])){
+            $_SESSION['flash_msg'] = ['msg' => '로그인 후 이용해주세요'];
+            header("Location: /login");
+        }
+        $id = $_GET['id'];
+
+        $sql = "SELECT * FROM boards WHERE id = ?";
+        $data = DB::fetch($sql, [$id]);
+        $this->render("post/edit", ['data'=>$data]);
+    }
+
     public function writeProcess() {
         $title = $_POST['title'];
         $content = $_POST['content'];
@@ -41,6 +53,41 @@ class PostController extends MasterController {
             header("Location: /post");
         }else {
             $_SESSION['flash_msg'] = ['msg' => '글이 작성되었습니다'];
+            header("Location: /");
+        }
+    }
+    public function editProcess(){
+        $id = $_POST['id'];
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+        
+        $sql = "UPDATE boards SET title = ?, content = ? WHERE id = ?";
+
+        $cnt = DB::query($sql, [$title, $content, $id]);
+
+        if($cnt != 1) {
+            $_SESSION['flash_msg'] = ['msg' => '글 수정중 오류 발생'];
+            header("Location: /");
+        }else {
+            $_SESSION['flash_msg'] = ['msg' => '글이 수정되었습니다'];
+            header("Location: /");
+        }
+    }
+    public function deleteProcess(){
+        if(!isset($_GET['id'])){
+            $_SESSION['flash_msg'] = ['msg' => '로그인 후 이용해주세요'];
+            header("Location: /login");
+        }
+        $id = $_GET['id'];
+        $sql = "DELETE FROM boards WHERE id = ?";
+        
+        $cnt = DB::query($sql, [$id]);
+
+        if($cnt != 1) {
+            $_SESSION['flash_msg'] = ['msg' => '글 삭제중 오류 발생'];
+            header("Location: /");
+        }else {
+            $_SESSION['flash_msg'] = ['msg' => '글이 삭제되었습니다'];
             header("Location: /");
         }
     }

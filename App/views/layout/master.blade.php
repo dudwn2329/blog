@@ -56,7 +56,7 @@
                     <img src="/images/logo.png" alt="logo" width="360" height="70">
                 </div>
                 <div class="copyright">
-                    <p>Copyright dudwn. 2019 Allright reserved. Y-Y Digital hightschool</p>
+                    <p>Copyright dudwn. 2019 Some right reserved. Y-Y Digital hightschool</p>
                 </div>
             </div>
         </footer>

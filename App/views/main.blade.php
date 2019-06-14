@@ -9,27 +9,15 @@
                 <button class="btn btn-outline-light">&lt;</button>
                 <button class="btn btn-outline-light">&gt;</button>
             </div>
-            <div class="slide-image active" style="background-image:url('/images/vordt.jpg')">
+            @foreach($slide as $item)
+            <div class="slide-image">
                 <div class="filter"></div>
+                {!!$item->image!!}
                 <div class="slide-content">
-                    <h1>슬라이드 제목</h1>
-                    <p>슬라이드의 내용을 여기다가 표시</p>    
+                    <h1>{!!$item->title!!}</h1>
                 </div>
             </div>
-            <div class="slide-image" style="background-image:url('/images/695524.jpg')">
-                <div class="filter"></div>
-                <div class="slide-content">
-                    <h1>슬라이드 제목</h1>
-                    <p>슬라이드의 내용을 여기다가 표시</p>    
-                </div>
-            </div>
-            <div class="slide-image" style="background-image:url('/images/695524.jpg')">
-                <div class="filter"></div>
-                <div class="slide-content">
-                    <h1>슬라이드 제목</h1>
-                    <p>슬라이드의 내용을 여기다가 표시</p>    
-                </div>
-            </div>
+            @endforeach
         </div>
         <div class="indicator">
             <ul>
@@ -56,28 +44,21 @@
         </div>
         @endforeach
     </section>
-    <ul class="pagination justify-content-center mt-5">
+    <div class="pagination justify-content-center mt-5">
         @if($p->prev)
-        <li class="page-item">
             <a href="/?p={{$p->start - 1 }}" class="page-link">이전</a>
-        </li>
         @endif
         @for($i = $p->start; $i <= $p->end; $i++)
         @if($i == $p->current)
-        <li class="page-item" style="background-color: #ef9a9a;">        
+        <a href="/?p={{$i}}" class="page-link" style="background-color: #E3672A;">{{ $i }}</a>
         @else
-        <li class="page-item">
+        <a href="/?p={{$i}}" class="page-link">{{ $i }}</a>
         @endif
-        <li class="page-item">
-            <a href="/?p={{$i}}" class="page-link">{{ $i }}</a>
-        </li>
         @endfor
         
         @if($p->next)
-        <li class="page-item">
-            <a href="/?p={{$p->start + 1 }}" class="page-link">다음</a>
-        </li>
+            <a href="/?p={{$p->start+1 }}"  class="page-link">다음</a>
         @endif
-    </ul>
+    </div>
 </div>
 @endsection

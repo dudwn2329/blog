@@ -24,7 +24,19 @@ class StaticController extends MasterController {
         }
         $pager = new Pager();
         $pager->calc($page);
-        $this->render("main", ['list' => $list, "p"=>$pager]);
+        
+        $sql = "SELECT * FROM boards ORDER BY id DESC LIMIT 3";
+        $slide = DB::fetchAll($sql);
+
+        foreach($slide as $item){
+            $match = preg_match($imgPattern, $item->image, $matches);
+            if($match>0){
+                $item->image = $matches[0];
+            }else{
+                $item->image = "<img src='/images/nooimage.png'>";
+            }
+        }
+        $this->render("main", ['list' => $list, "p"=>$pager, "slide"=>$slide]);
     }
 
     public function errorPage($msg) {
